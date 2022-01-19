@@ -95,6 +95,9 @@ def calendar():
 
         time.sleep(15)
 
+def parseCalendarEvents(calendar_events):
+    return
+
 # Get weather data from weathermap
 def getWeather(city):
     result = requests.get(url.format(city, api_key))
@@ -161,9 +164,9 @@ appHeight = app.winfo_height()
 appWidth = app.winfo_width()
 
 # Frame setup
-cal_frame = Frame(app, bg = bg)
-clock_frame = Frame(app, bg = bg)
-weather_frame = Frame(app,bg = bg)
+cal_frame = Frame(app, bg = bg, highlightbackground = "white", highlightthickness = 2)
+clock_frame = Frame(app, bg = bg, highlightbackground = "white", highlightthickness = 2)
+weather_frame = Frame(app,bg = bg, highlightbackground = "white", highlightthickness = 2)
 
 
 
