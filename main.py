@@ -74,7 +74,6 @@ def calendar():
             calendar_lbl['text'] = "Upcoming events: "
             # Call the Calendar API
             now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-            print('Getting the upcoming 5 events')
             events_result = service.events().list(calendarId='primary', timeMin=now,
                                                   maxResults=5, singleEvents=True,
                                                   orderBy='startTime').execute()
@@ -87,7 +86,6 @@ def calendar():
         # Prints the start and name of the next 10 events
             for event in events:
                 start = event['start'].get('dateTime', event['start'].get('date'))
-                print(start, event['summary'])
                 calendar_lbl['text'] = calendar_lbl['text'] + "\n" + event['summary']
 
         except HttpError as error:
@@ -127,7 +125,6 @@ def searchWeather():
         else:
             messagebox.showerror('Error', "Cannot find {}".format(city))
         time.sleep(5)
-        print("Weather Update")
 
 def clock():
     time_live = time.strftime("%H:%M:%S")
@@ -164,13 +161,9 @@ appHeight = app.winfo_height()
 appWidth = app.winfo_width()
 
 # Frame setup
-cal_frame = Frame(app, bg = bg, highlightbackground = "white", highlightthickness = 2)
-clock_frame = Frame(app, bg = bg, highlightbackground = "white", highlightthickness = 2)
-weather_frame = Frame(app,bg = bg, highlightbackground = "white", highlightthickness = 2)
-
-
-
-
+cal_frame = Frame(app, bg = bg)
+clock_frame = Frame(app, bg = bg)
+weather_frame = Frame(app,bg = bg)
 
 # Labels for location, temp and weather
 
@@ -202,6 +195,3 @@ clockWorker()
 calendarWorker()
 
 app.mainloop()
-
-
-
